@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        
+        string res="";
+        if(numRows==1) return s;
+        
+        for(int i=0; i<numRows; i++){
+            int j=i;
+            while(j<s.size()){
+                res+=s[j];
+                //Move to the desired index
+                j += (numRows - ( j % (numRows - 1) ) - 1) * 2;
+            }
+        }
+        
+        return res;
+    }
+};
