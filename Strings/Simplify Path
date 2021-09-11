@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        
+        stringstream s(path);
+        string ans; string tmp;
+        stack<string> st;
+        
+        while(getline(s, tmp, '/')){
+            if(tmp=="" || tmp==".") continue;
+            if(!st.empty() && tmp=="..") st.pop();
+            else if(tmp!="..") st.push(tmp);
+        }
+        
+        if(st.size()==0) ans="/";
+        while(!st.empty()){
+            ans = '/' + st.top() + ans;
+            st.pop();
+        }
+        
+        return ans;
+    }
+};
